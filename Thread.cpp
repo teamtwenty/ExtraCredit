@@ -26,4 +26,11 @@
 // If state->mStarted is 0, then the thread started successfully, so assign state->mThreadId the threadId.
 // Return 'state'
 //--------------------------------------------------------------------------------------------------------------
-???
+ThreadState* StartThread (ThreadFunction pFunction, long pLimit)
+{
+    pthread_t new_thread;
+    ThreadState* state = new ThreadState;
+    state -> mLimit = pLimit;
+    state -> mStarted = pthread_create(&new_thread , NULL, pFunction, (void*) state);
+    return state;
+}
