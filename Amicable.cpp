@@ -6,6 +6,7 @@
 #include "Main.hpp"
 #include "Thread.hpp"
 #include "Types.hpp"
+#include <stdio.h>
 
 using std::cout;
 using std::endl;

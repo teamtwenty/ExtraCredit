@@ -124,9 +124,7 @@ static void Help
 // from 2 up to gGlobals.mAmicableLimit, and all the Keith numbers from 10 up to gGlobals.mKeithLimit. If any
 // thread fails to start, the we terminate by calling Error().
 //--------------------------------------------------------------------------------------------------------------
-static void Parallel
-    (
-    )
+static void Parallel()
 {
     ThreadState *primesState = StartThread(FindPrimesThread, gGlobals.mPrimeLimit);
     if (primesState->mStarted != 0) Error("Failed to start FindPrimes thread");
@@ -135,7 +133,9 @@ static void Parallel
     if (amicableState->mStarted != 0) Error("Failed to start FindAmicable thread");
 
     // Start the thread to find the Keith numbers.
-    ???
+    ThreadState *keithState = StartThread(FindKeithsThread, gGlobals.mKeithLimit);
+    if (keithState->mStarted != 0) Error("Failed to start FindKeiths thread");
+
 }
 
 //--------------------------------------------------------------------------------------------------------------
@@ -175,4 +175,9 @@ static void ParseCmdLine
 // Call FindAmicable()
 // Call FindKeiths()
 //--------------------------------------------------------------------------------------------------------------
-???
+static void Serial()
+{
+    FindPrimes(gGlobals.mPrimeLimit);
+    FindAmicable(gGlobals.mAmicableLimit);
+    FindKeiths(gGlobals.mKeithLimit);
+}

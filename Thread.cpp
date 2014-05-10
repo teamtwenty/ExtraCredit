@@ -31,6 +31,9 @@ ThreadState* StartThread (ThreadFunction pFunction, long pLimit)
     pthread_t new_thread;
     ThreadState* state = new ThreadState;
     state -> mLimit = pLimit;
-    state -> mStarted = pthread_create(&new_thread , NULL, pFunction, (void*) state);
+    if(state-> mStarted == 0)
+    {
+        state -> mStarted = pthread_create(&new_thread , NULL, pFunction, (void*) state);
+    }
     return state;
 }

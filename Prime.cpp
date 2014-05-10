@@ -6,6 +6,8 @@
 #include "Main.hpp"
 #include "Prime.hpp"
 #include "Thread.hpp"
+#include <stdio.h>
+
 
 using std::cout;
 using std::endl;
